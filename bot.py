@@ -83,5 +83,3 @@ async def dog(ctx):
     el programa llama a la función get_dog_image_url'''
     image_url = get_dog_image_url()
     await ctx.send(image_url)
-
-TM2NzUzMjMyOTA0MjAyMw.G6xW-V.vUnFq-XKKeBjSfdcgsyeTeL4bqaOpg6Sb3ojRo")
