@@ -38,4 +38,13 @@ async def cool(ctx):
 @cool.command(name='bot')
 async def _bot(ctx):
     """Is the bot cool?"""
+
+@bot.command()
+async def joined(ctx, member: discord.Member):
+    """Says when a member joined."""
+    # Joined at can be None in very bizarre cases so just handle that as well
+    if member.joined_at is None:
+        await ctx.send(f'{member} has no join date.')
+    else:
+        await ctx.send(f'{member} joined {discord.utils.format_dt(member.joined_at)}')
     await ctx.send('Yes, the bot is cool.')
