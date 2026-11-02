@@ -19,7 +19,7 @@ async def hello(ctx):
 
 @bot.command()
 async def bye(ctx):
-    await ctx.send("😉")
+    await ctx.send("😢😢😢😢😢😢😢😢")
 
 @bot.command()
 async def pasword(ctx, caracteres: int):
