@@ -1,6 +1,10 @@
 import discord
 from bot_login import gen_pass
 from discord.ext import commands
+import os
+import random
+from bot_login import get_duck_image_url
+from bot_login import get_dog_image_url
 
 # La variable intents almacena los privilegios del bot
 intents = discord.Intents.default()
@@ -19,7 +23,7 @@ async def hello(ctx):
 
 @bot.command()
 async def bye(ctx):
-    await ctx.send("😢😢😢😢😢😢😢😢")
+    await ctx.send("😉")
 
 @bot.command()
 async def pasword(ctx, caracteres: int):
@@ -38,6 +42,7 @@ async def cool(ctx):
 @cool.command(name='bot')
 async def _bot(ctx):
     """Is the bot cool?"""
+    await ctx.send('Yes, the bot is cool.')
 
 @bot.command()
 async def joined(ctx, member: discord.Member):
@@ -47,4 +52,36 @@ async def joined(ctx, member: discord.Member):
         await ctx.send(f'{member} has no join date.')
     else:
         await ctx.send(f'{member} joined {discord.utils.format_dt(member.joined_at)}')
-    await ctx.send('Yes, the bot is cool.')
+
+@bot.command()
+async def mem(ctx):
+    with open('image/meme1.jpeg', 'rb') as f:
+        # ¡Vamos a almacenar el archivo de la biblioteca Discord convertido en esta variable!
+        picture = discord.File(f)
+    # A continuación, podemos enviar este archivo como parámetro.
+    await ctx.send(file=picture)
+
+@bot.command()
+async def memeRandom(ctx):
+    meme_random = random.choice (os.listdir('image'))
+    with open(f'image/{meme_random}', 'rb') as f:
+        # ¡Vamos a almacenar el archivo de la biblioteca Discord convertido en esta variable!
+        picture = discord.File(f)
+    # A continuación, podemos enviar este archivo como parámetro.
+    await ctx.send(file=picture)
+
+@bot.command('duck')
+async def duck(ctx):
+    '''Una vez que llamamos al comando duck, 
+    el programa llama a la función get_duck_image_url'''
+    image_url = get_duck_image_url()
+    await ctx.send(image_url)
+
+@bot.command('dog')
+async def dog(ctx):
+    '''Una vez que llamamos al comando dog, 
+    el programa llama a la función get_dog_image_url'''
+    image_url = get_dog_image_url()
+    await ctx.send(image_url)
+
+TM2NzUzMjMyOTA0MjAyMw.G6xW-V.vUnFq-XKKeBjSfdcgsyeTeL4bqaOpg6Sb3ojRo")
